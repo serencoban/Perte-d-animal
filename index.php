@@ -1,6 +1,11 @@
 <?php
 session_start(); /* pour avoir acces au données de la session*/
-
+$countries = [
+    'be' => 'Belgique',
+    'fr' => 'France',
+    'sw' => 'Suisse',
+    'sp' => 'Espagne'
+];
 /* les données sont utilisables le tmps d'une requête */
 
 ?>
@@ -8,6 +13,7 @@ session_start(); /* pour avoir acces au données de la session*/
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>J'ai perdu mon animal</title>
 </head>
 <body>
@@ -28,6 +34,7 @@ session_start(); /* pour avoir acces au données de la session*/
                     value="<?= $_SESSION['old']['email'] ?>"
                 <?php
                 endif; ?>
+                   placeholder="gg@gmail.com"
                    required>
         </div>
         <?php
@@ -39,8 +46,7 @@ session_start(); /* pour avoir acces au données de la session*/
 
 
         <div>
-            <label for="vemail"><abbr title="requis">*</abbr>&nbsp;Retapez votre email une seconde
-                fois</label>
+            <label for="vemail"><abbr title="requis">*</abbr>&nbsp;Confirmez l'email</label>
             <input type="email"
                    name="vemail"
                    id="vemail"
@@ -49,6 +55,7 @@ session_start(); /* pour avoir acces au données de la session*/
                     value="<?= $_SESSION['old']['vemail'] ?>"
                 <?php
                 endif; ?>
+                    placeholder="gg@gmail.com"
                    required>
         </div>
         <?php
@@ -60,8 +67,7 @@ session_start(); /* pour avoir acces au données de la session*/
 
 
         <div>
-            <label for="tel"> Téléphond
-            </label>
+            <label for="tel"> Téléphone</label>
             <input type="tel"
                    name="tel"
                    id="tel"
@@ -70,35 +76,31 @@ session_start(); /* pour avoir acces au données de la session*/
                     value="<?= $_SESSION['old']['tel'] ?>"
                 <?php
                 endif; ?>
+                   placeholder="0477843212"
                    required>
         </div>
         <?php
         if (isset($_SESSION['errors']['tel'])): ?>
-            <div><p><?= $_SESSION['errors']['tell'] ?></p></div>
+            <div><p><?= $_SESSION['errors']['tel'] ?></p></div>
         <?php
         endif; ?>
 
 
         <div>
             <label for="country">Pays</label>
-            <input list="country">
-            <datalist id="country">
-                <option value="Belgique"></option>
-                <option value="France"></option>
-            </datalist>
+            <select name="country" id="country">
+                <?php foreach ($countries as $country): ?>
+                <option value="be">Belgique</option> ?>
+                <? endforeach; ?>
+            </select>
         </div>
-        <?php
-        if (isset($_SESSION['errors']['vemail'])): ?>
-            <div><p><?= $_SESSION['errors']['vemail'] ?></p></div>
-        <?php
-        endif; ?>
+
 
     </fieldset>
     <button type="submit">Déclarer mon animal</button>
   </form>
 </body>
 </html>
-
 
 
 <?php

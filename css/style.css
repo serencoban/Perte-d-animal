@@ -1,3 +1,48 @@
-fieldset{
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    margin-left: 24px;
+}
+legend{
 
+    margin-top: 32px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+fieldset{
+    background-color: #F9F9FB;
+}
+form{
+    margin: 0 24px;
+}
+div{
+    padding: 12px;
+    border: 1px #ECECEC solid;
+}
+label{
+    font-size: 16px;
+    font-weight: 600;
+
+}
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border: #ECECEC;
+    box-shadow: inset 1px 1px 1px #ECECEC;
+
+}
+abbr{
+    color: red;
+    text-decoration: none;
+}
+select, button{
+    padding: 12px;
+    background-color: #8283D1;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }

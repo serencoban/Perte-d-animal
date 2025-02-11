@@ -1,9 +1,20 @@
 <?php
 session_start();
+
+
 /*
  * valider les 2 champs
  */
 $email='';
+$vmail='';
+$tel='';
+$countries = [
+    'be' => 'Belgique',
+    'fr' => 'France',
+    'sw' => 'Suisse',
+    'sp' => 'Espagne'
+];
+
 if (array_key_exists('email', $_REQUEST)){
     $email = trim($_REQUEST['email']);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {} /* si ce n'est pas un email */
@@ -12,6 +23,19 @@ if (array_key_exists('email', $_REQUEST)){
     $_SESSION['errors']['email'] = "l'email est requis";
 }
 
+
+if (array_key_exists('vemail', $_REQUEST)) {
+    $vemail = trim($_REQUEST['vemail']);
+    if ($email !== $vemail) {
+        $_SESSION['errors']['vemail'] = 'L’email doit être confirmé';
+    }
+} else {
+    $_SESSION['errors']['vemail'] = 'L’email de confirmation est requis';
+}
+
+if (!ctype_digit($tel)){
+    $_SESSION['errors']['tel'] ="Le numéro de téléphone ne contient pas de numéro";
+}
  /*
  * s'il ya des erreurs, on redirige vers la page du formulaire, en mémorisanr le tps d'une requête les erreurs et les anciennes données
  */
