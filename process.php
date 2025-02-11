@@ -1,7 +1,21 @@
 <?php
+session_start();
 /*
  * valider les 2 champs
+ */
+
+ /*
  * s'il ya des erreurs, on redirige vers la page du formulaire, en mémorisanr le tps d'une requête les erreurs et les anciennes données
+ */
+$_SESSION['errors']['email']='Oops';
+
+if (!is_null($_SESSION['errors']))
+    $_SESSION['old'] = $_REQUEST;
+header('Location: /index.php');
+exit(); /*Pour interrompre le script car le navigateur pourrait envoyer la suite */
+$_SESSION['old']['email'];
+
+/*
  * assurer le rendu récapitulatif des données soumises
  */
 
