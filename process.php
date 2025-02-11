@@ -3,11 +3,18 @@ session_start();
 /*
  * valider les 2 champs
  */
+$email='';
+if (array_key_exists('email', $_REQUEST)){
+    $email = trim($_REQUEST['email']);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {} /* si ce n'est pas un email */
+    $_SESSION['errors']['email'] = "l'email doit etre un email";
+}else{
+    $_SESSION['errors']['email'] = "l'email est requis";
+}
 
  /*
  * s'il ya des erreurs, on redirige vers la page du formulaire, en mémorisanr le tps d'une requête les erreurs et les anciennes données
  */
-$_SESSION['errors']['email']='Oops';
 
 if (!is_null($_SESSION['errors']))
     $_SESSION['old'] = $_REQUEST;
@@ -36,7 +43,7 @@ $_SESSION['old']['email'];
 <dl>
     <div>
         <dt>Email:</dt>
-        <dd><?= $_REQUEST['email'] ?></dd> <!-- on va demander à php de chercher les données entré par l'utilisateur-->
+        <dd><?= $email ?></dd> <!-- on va demander à php de chercher les données entré par l'utilisateur-->
     </div>
 </dl>
 
